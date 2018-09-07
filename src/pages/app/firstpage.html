@@ -5,5 +5,15 @@
 </ion-header>
 
 <ion-content [className]="'style1'">
-  <h5>Benvenuto!</h5>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button full>Full Button</button>
+      </ion-col>
+      <ion-col col-6>this column will take 12 columns</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>This column will take 6 columns</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
