@@ -14,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Pro } from '@ionic/pro';
 import { Injectable, Injector } from '@angular/core';
+import {ReportPage} from "../pages/report/report";
 
 
 Pro.init('YOUR_APP_ID', {
@@ -50,7 +51,8 @@ export class MyErrorHandler implements ErrorHandler {
     ContactPage,
     HomePage,
     TabsPage,
-    FirstPage
+    FirstPage,
+    ReportPage
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ export class MyErrorHandler implements ErrorHandler {
     ContactPage,
     HomePage,
     TabsPage,
-    FirstPage
+    FirstPage,
+    ReportPage
   ],
   providers: [
     StatusBar,
