@@ -16,6 +16,9 @@ import { Pro } from '@ionic/pro';
 import { Injectable, Injector } from '@angular/core';
 import {ReportPage} from "../pages/report/report";
 
+import { Camera } from '@ionic-native/camera';
+import {AndroidPermissions} from "@ionic-native/android-permissions";
+
 
 Pro.init('YOUR_APP_ID', {
   appVersion: 'APP_VERSION'
@@ -72,6 +75,8 @@ export class MyErrorHandler implements ErrorHandler {
     StatusBar,
     SplashScreen,
 	IonicErrorHandler,
+    Camera,
+    AndroidPermissions ,
     {provide: ErrorHandler, useClass: MyErrorHandler}
   ]
 })
