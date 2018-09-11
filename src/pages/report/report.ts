@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Camera, CameraOptions, CameraPopoverOptions } from '@ionic-native/camera';
 import {AndroidPermissions} from "@ionic-native/android-permissions";
+import {Geolocation} from "@ionic-native/geolocation";
+
 @Component({
   selector: 'page-report',
   providers: [Camera],
@@ -11,7 +13,7 @@ export class ReportPage {
 
   private image: string;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController,private camera: Camera,private androidPermissions: AndroidPermissions) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController,private camera: Camera,private androidPermissions: AndroidPermissions,private geolocation:Geolocation) {
 
     this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
       result => console.log('Has permission?',result.hasPermission),
@@ -23,10 +25,27 @@ export class ReportPage {
   }
 
 
+  getLocation(){
+    this.geolocation.getCurrentPosition().then((resp) => {
+
+      resp.coords.latitude;
+
+      let alert = this.alertCtrl.create({
+        title: 'location',
+        subTitle: 'coordinates',
+        message:resp.coords.latitude.toString(),
+        buttons: ['OK']
+      });
+      alert.present();
+
+      // resp.coords.latitude
+      // resp.coords.longitude
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+  }
 
   onTakePicture() {
-
-
 
     const options: CameraOptions = {
       quality: 100,

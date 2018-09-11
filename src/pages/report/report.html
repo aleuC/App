@@ -8,10 +8,15 @@
 
 <ion-content>
 
-  <button ion-button full (click)="onTakePicture()">Full Button</button>
+  <img class="img" [src]="image" />
+
+  <button ion-button full (click)="onTakePicture()">camera</button>
+
 
   <ion-item>
     <ion-input type="text" placeholder="Descrizione"></ion-input>
   </ion-item>
+
+  <button ion-button full (click)="getLocation()">location  </button>
 
 </ion-content>

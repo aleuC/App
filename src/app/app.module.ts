@@ -18,6 +18,7 @@ import {ReportPage} from "../pages/report/report";
 
 import { Camera } from '@ionic-native/camera';
 import {AndroidPermissions} from "@ionic-native/android-permissions";
+import {Geolocation} from "@ionic-native/geolocation";
 
 
 Pro.init('YOUR_APP_ID', {
@@ -77,6 +78,7 @@ export class MyErrorHandler implements ErrorHandler {
 	IonicErrorHandler,
     Camera,
     AndroidPermissions ,
+    Geolocation,
     {provide: ErrorHandler, useClass: MyErrorHandler}
   ]
 })
