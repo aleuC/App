@@ -19,7 +19,7 @@ import {ReportPage} from "../pages/report/report";
 import { Camera } from '@ionic-native/camera';
 import {AndroidPermissions} from "@ionic-native/android-permissions";
 import {Geolocation} from "@ionic-native/geolocation";
-
+import { IonicStorageModule } from '@ionic/storage';
 
 Pro.init('YOUR_APP_ID', {
   appVersion: 'APP_VERSION'
@@ -60,7 +60,8 @@ export class MyErrorHandler implements ErrorHandler {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
