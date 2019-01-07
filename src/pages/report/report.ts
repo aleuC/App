@@ -28,13 +28,13 @@ export class ReportPage {
 
    let date = new Date().getDate();
 
-    let your_json_object = {"val":date};
+    let your_json_object = { "name":"John", "age":30, "car":null };
 
     // set a key/value
-    this.storage.set('date', your_json_object);
+    this.storage.set('my-json', your_json_object);
 
     // to get a key/value pair
-    this.storage.get('date').then((val) => {
+    this.storage.get('my-json').then((val) => {
       console.log('Your json is', val);
     });
 

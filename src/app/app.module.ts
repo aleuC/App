@@ -14,7 +14,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Pro } from '@ionic/pro';
 import { Injectable, Injector } from '@angular/core';
+import {ReportPage} from "../pages/report/report";
 
+import { Camera } from '@ionic-native/camera';
+import {AndroidPermissions} from "@ionic-native/android-permissions";
+import {Geolocation} from "@ionic-native/geolocation";
+import { IonicStorageModule } from '@ionic/storage';
 
 Pro.init('YOUR_APP_ID', {
   appVersion: 'APP_VERSION'
@@ -50,11 +55,13 @@ export class MyErrorHandler implements ErrorHandler {
     ContactPage,
     HomePage,
     TabsPage,
-    FirstPage
+    FirstPage,
+    ReportPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,12 +70,16 @@ export class MyErrorHandler implements ErrorHandler {
     ContactPage,
     HomePage,
     TabsPage,
-    FirstPage
+    FirstPage,
+    ReportPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
 	IonicErrorHandler,
+    Camera,
+    AndroidPermissions ,
+    Geolocation,
     {provide: ErrorHandler, useClass: MyErrorHandler}
   ]
 })

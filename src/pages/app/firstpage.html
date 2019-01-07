@@ -5,5 +5,16 @@
 </ion-header>
 
 <ion-content [className]="'style1'">
-  <h5>Benvenuto!</h5>
+  <ion-grid>
+    <div class="row">
+      <div class="col">
+        <button ion-button style="width: 50%;" (click)="openPage()">Crea Segnalazione</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button ion-button style="width: 50%;" (click)="openPage()">Elenco Segnalazioni</button>
+      </div>
+    </div>
+  </ion-grid>
 </ion-content>
