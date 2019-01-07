@@ -3,6 +3,8 @@ import {NavController, AlertController, DateTime} from 'ionic-angular';
 import { Camera, CameraOptions, CameraPopoverOptions } from '@ionic-native/camera';
 import {AndroidPermissions} from "@ionic-native/android-permissions";
 import {Geolocation} from "@ionic-native/geolocation";
+import { Storage } from '@ionic/storage';
+import { MediaCapture,MediaFile, CaptureError} from "@ionic-native/media-capture";
 
 @Component({
   selector: 'page-report',
@@ -13,7 +15,7 @@ export class ReportPage {
 
   private image: string;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController,private camera: Camera,private androidPermissions: AndroidPermissions,private geolocation:Geolocation,private storage: Storage) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController,private camera: Camera,private androidPermissions: AndroidPermissions,private geolocation:Geolocation,private storage: Storage, private mediaCapture:MediaCapture) {
 
     this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
       result => console.log('Has permission?',result.hasPermission),
@@ -24,18 +26,39 @@ export class ReportPage {
 
   }
 
-  submitReport(){
+  recordAudio(){
 
-   let date = new Date().getDate();
+    let your_json_object;
+    this.mediaCapture.captureAudio().then(
+      (data: MediaFile[]) => (your_json_object = { "name": data }),
+      (err: CaptureError) => console.error(err)
+    );
 
-    let your_json_object = { "name":"John", "age":30, "car":null };
+    console.log(your_json_object.data);
 
     // set a key/value
     this.storage.set('my-json', your_json_object);
 
     // to get a key/value pair
     this.storage.get('my-json').then((val) => {
-      console.log('Your json is', val);
+      console.log('Your json is',val.name);
+    });
+
+
+  }
+
+  submitReport(){
+
+   let date = new Date().getDate();
+
+    let your_json_object = { "name":"John" };
+
+    // set a key/value
+    this.storage.set('my-json', your_json_object);
+
+    // to get a key/value pair
+    this.storage.get('my-json').then((val) => {
+      console.log('Your json is',val.name);
     });
 
   }

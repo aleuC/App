@@ -11,8 +11,6 @@ export class FirstPage {
   constructor(public navCtrl: NavController) {
 
 
-
-
   }
   openPage(){
     this.navCtrl.push(ReportPage);
