@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      report
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <img class="img" [src]="image" />
+
+  <button ion-button full (click)="onTakePicture()">camera</button>
+
+
+  <ion-item>
+    <ion-input type="text" placeholder="Descrizione"></ion-input>
+  </ion-item>
+
+  <button ion-button full (click)="getLocation()">location  </button>
+
+</ion-content>
