@@ -21,6 +21,8 @@ import {AndroidPermissions} from "@ionic-native/android-permissions";
 import {Geolocation} from "@ionic-native/geolocation";
 import { IonicStorageModule } from '@ionic/storage';
 import { MediaCapture} from "@ionic-native/media-capture";
+import { File } from '@ionic-native/file';
+
 
 Pro.init('YOUR_APP_ID', {
   appVersion: 'APP_VERSION'
@@ -82,6 +84,7 @@ export class MyErrorHandler implements ErrorHandler {
     AndroidPermissions ,
     Geolocation,
     MediaCapture,
+    File,
     {provide: ErrorHandler, useClass: MyErrorHandler}
   ]
 })

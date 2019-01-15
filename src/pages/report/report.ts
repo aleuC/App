@@ -4,7 +4,8 @@ import { Camera, CameraOptions, CameraPopoverOptions } from '@ionic-native/camer
 import {AndroidPermissions} from "@ionic-native/android-permissions";
 import {Geolocation} from "@ionic-native/geolocation";
 import { Storage } from '@ionic/storage';
-import { MediaCapture,MediaFile, CaptureError} from "@ionic-native/media-capture";
+import {MediaCapture, MediaFile, CaptureError, CaptureImageOptions} from "@ionic-native/media-capture";
+import { File } from '@ionic-native/file';
 
 @Component({
   selector: 'page-report',
@@ -14,11 +15,13 @@ import { MediaCapture,MediaFile, CaptureError} from "@ionic-native/media-capture
 export class ReportPage {
 
   private image: string;
+  private audio: string;
+  private text: string;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController,private camera: Camera,private androidPermissions: AndroidPermissions,private geolocation:Geolocation,private storage: Storage, private mediaCapture:MediaCapture) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, private camera: Camera, private androidPermissions: AndroidPermissions, private geolocation: Geolocation, private storage: Storage, private mediaCapture: MediaCapture, private file: File) {
 
     this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
-      result => console.log('Has permission?',result.hasPermission),
+      result => console.log('Has permission?', result.hasPermission),
       err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
     );
 
@@ -26,44 +29,45 @@ export class ReportPage {
 
   }
 
-  recordAudio(){
 
-    let your_json_object;
+  recordAudio() {
+
+    var your_json_object = {};
     this.mediaCapture.captureAudio().then(
-      (data: MediaFile[]) => (your_json_object = { "name": data }),
-      (err: CaptureError) => console.error(err)
+      (data: MediaFile[]) => (your_json_object = {name: data}),
+      (err: CaptureError) => console.error("this is so sad")
     );
 
-    console.log(your_json_object.data);
+    //console.log("bubu"+your_json_object.name);
 
     // set a key/value
     this.storage.set('my-json', your_json_object);
 
     // to get a key/value pair
     this.storage.get('my-json').then((val) => {
-      console.log('Your json is',val.name);
+      console.log('Your json is', val.name);
     });
 
 
   }
 
-  submitReport(){
+  submitReport() {
 
-   let date = new Date().getDate();
+    let date = new Date().getDate();
 
-    let your_json_object = { "name":"John" };
+    let your_json_object = {"name": "John"};
 
     // set a key/value
     this.storage.set('my-json', your_json_object);
 
     // to get a key/value pair
     this.storage.get('my-json').then((val) => {
-      console.log('Your json is',val.name);
+      console.log('Your json is', val.name);
     });
 
   }
 
-  getLocation(){
+  getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
 
       resp.coords.latitude;
@@ -71,7 +75,7 @@ export class ReportPage {
       let alert = this.alertCtrl.create({
         title: 'location',
         subTitle: 'coordinates',
-        message:resp.coords.latitude.toString(),
+        message: resp.coords.latitude.toString(),
         buttons: ['OK']
       });
       alert.present();
@@ -85,21 +89,73 @@ export class ReportPage {
 
   onTakePicture() {
 
+    /*const options: CaptureImageOptions = {
+      limit: 1
+    }*/
+
+    var imageLocation;
+
+    /*this.mediaCapture.captureImage(options).then((res: MediaFile[]) => {
+        let capturedFile = res[0];
+        let fileName = capturedFile.name;
+        let dir = capturedFile['localURL'].split('/');
+        dir.pop();
+        let fromDirectory = dir.join('/');
+        var toDirectory = this.file.dataDirectory;
+
+        imageLocation = toDirectory + fileName;
+        console.log('image_location: ', capturedFile.fullPath);
+
+        //this.file.readAsDataURL(toDirectory, fileName).then(res=> console.log('immagine gbbg: ', res)  );
+
+
+
+        let realPath = imageLocation.replace(/^file:\/\//, '');
+        //realPath = imageLocation.replace(/\/, '\');
+
+        console.log('image_location_dir: ', realPath);
+
+        this.image =realPath;
+
+        this.file.copyFile(fromDirectory, fileName, toDirectory, fileName).then((res) => {
+          //this.storeMediaFiles([{name: fileName, size: capturedFile.size}]);
+          //console.log('image_location: ', toDirectory + fileName);
+
+        }, err => {
+          console.log('err: ', err.toString());
+        });
+      },
+      (err: CaptureError) => console.error(err));*/
+
+
+    //console.log('image', imageLocation);
+
+
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
       saveToPhotoAlbum: true,
+      encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
+
     }
 
     this.camera.getPicture(options).then((imageData) => {
-      this.image = 'data:image/jpeg;base64,' + imageData;
+      //this.image = 'data:image/jpeg;base64,' + imageData;
+
+
+      let realPath = (<any>window).Ionic.WebView.convertFileSrc(imageData);
+      //let realPath = imageData.replace(/^file:\/\//, '');
+
+      this.image = realPath;
+      console.log(realPath);
+
     }, (err) => {
       this.displayErrorAlert(err);
     });
   }
 
-  displayErrorAlert(err){
+  displayErrorAlert(err) {
     console.log(err);
     let alert = this.alertCtrl.create({
       title: 'Error',
@@ -108,8 +164,5 @@ export class ReportPage {
     });
     alert.present();
   }
-
-
-
-
 }
+

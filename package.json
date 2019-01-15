@@ -24,6 +24,7 @@
     "@ionic-native/camera": "^4.12.2",
     "@ionic-native/core": "~4.10.0",
     "@ionic-native/diagnostic": "^4.10.1",
+    "@ionic-native/file": "^4.19.0",
     "@ionic-native/geolocation": "^4.12.2",
     "@ionic-native/media-capture": "^4.19.0",
     "@ionic-native/splash-screen": "~4.10.0",
@@ -73,7 +74,8 @@
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },
       "cordova-sqlite-storage": {},
-      "cordova-plugin-media-capture": {}
+      "cordova-plugin-media-capture": {},
+      "cordova-plugin-file": {}
     },
     "platforms": [
       "android",
