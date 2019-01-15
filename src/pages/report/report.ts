@@ -6,6 +6,8 @@ import {Geolocation} from "@ionic-native/geolocation";
 import { Storage } from '@ionic/storage';
 import {MediaCapture, MediaFile, CaptureError, CaptureImageOptions} from "@ionic-native/media-capture";
 import { File } from '@ionic-native/file';
+import { NativeAudio} from "@ionic-native/native-audio";
+import { Toast } from "@ionic-native/toast";
 
 @Component({
   selector: 'page-report',
@@ -17,8 +19,9 @@ export class ReportPage {
   private image: string;
   private audio: string;
   private text: string;
+  private audioLocation:string ;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, private camera: Camera, private androidPermissions: AndroidPermissions, private geolocation: Geolocation, private storage: Storage, private mediaCapture: MediaCapture, private file: File) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, private camera: Camera, private androidPermissions: AndroidPermissions, private geolocation: Geolocation, private storage: Storage, private mediaCapture: MediaCapture, private file: File,private nativeAudio:NativeAudio,private toast:Toast) {
 
     this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
       result => console.log('Has permission?', result.hasPermission),
@@ -27,16 +30,42 @@ export class ReportPage {
 
     this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
 
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.RECORD_AUDIO).then(
+      result => console.log('Has permission?', result.hasPermission),
+      err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.RECORD_AUDIO)
+    );
+
+    this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.RECORD_AUDIO, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
+
   }
 
+  play(){
+
+    this.nativeAudio.preloadSimple('uniqueId1', 'storage/emulated/0/Voice%20Recorder/Voce%20037.m4a' );
+    this.nativeAudio.play('uniqueId1', () => this.toast.show("ciao","long","center")).then();
+
+
+
+  }
 
   recordAudio() {
 
     var your_json_object = {};
+
     this.mediaCapture.captureAudio().then(
-      (data: MediaFile[]) => (your_json_object = {name: data}),
+      (data: MediaFile[]) => {
+        (this.audioLocation = data[0].fullPath)
+        console.log(this.audioLocation);
+
+        this.nativeAudio.preloadSimple('uniqueId1', this.audioLocation.replace(/^file:/, ''));
+        this.nativeAudio.play('uniqueId1');
+
+
+
+      },
       (err: CaptureError) => console.error("this is so sad")
     );
+
 
     //console.log("bubu"+your_json_object.name);
 
