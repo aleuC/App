@@ -19,7 +19,7 @@ export class ReportPage {
   private image: string;
   private audio: string;
   private text: string;
-  private audioLocation:string ;
+  private audioLocation:string;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, private camera: Camera, private androidPermissions: AndroidPermissions, private geolocation: Geolocation, private storage: Storage, private mediaCapture: MediaCapture, private file: File,private nativeAudio:NativeAudio,private toast:Toast) {
 

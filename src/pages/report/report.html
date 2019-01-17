@@ -1,76 +1,55 @@
 <ion-header>
   <ion-navbar>
-    <ion-title [className]="'style2'">Segnalazione</ion-title>
+    <ion-title [className]="'style1'">Segnalazione</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content [className]="'style1'">
-  <ion-grid>
-    <div class="row">
-      <div class="col">
+<ion-content>
+
+  <div class="grid">
+
+    <div class="row row-center">
+      <div class="col col-center">
         <img class="img" [src]="image" />
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <button ion-button style="width: 50%;" (click)="onTakePicture()">Aggiungi Foto</button>
+
+    <div class="row row-center">
+      <div class="col col-center">
+        <button ion-button full (click)="onTakePicture()">Aggiungi Foto</button>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <ion-item>
-          <ion-input type="text" placeholder="Descrizione"></ion-input>
-        </ion-item>
+
+    <div class="row row-center">
+      <div class="col col-center">
+        <ion-input type="text" placeholder="Descrizione"></ion-input>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <ion-item>
-          <button ion-button style="width: 50%;" (click)="getLocation()">Salva GPS</button>
-        </ion-item>
+
+    <div class="row row-center">
+      <div class="col col-center">
+        <button ion-button full (click)="getLocation()">Registra GPS</button>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <ion-item>
-          <button ion-button style="width: 50%;" (click)="recordAudio()">Registra Nota Audio</button>
-        </ion-item>
+
+    <div class="row row-center">
+      <div class="col col-center">
+        <button ion-button full (click)="recordAudio()">Registra Nota Audio</button>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <ion-item>
-          <button ion-button style="width: 50%;" (click)="play()">Ascolta Nota Audio</button>
-        </ion-item>
+
+    <div class="row row-center">
+      <div class="col col-center">
+        <button ion-button full (click)="play()">Riproduci Nota Audio</button>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <ion-item>
-          <button ion-button style="width: 50%;" (click)="submitReport()">Salva Segnalazione</button>
-        </ion-item>
+
+    <div class="row row-center">
+      <div class="col col-center">
+        <button ion-button full (click)="submitReport()">Salva Segnalazione</button>
       </div>
     </div>
-  </ion-grid>
-</ion-content>
-<ion-content>
-<!--
-  <img class="img" [src]="image" />
 
-  <button ion-button full (click)="onTakePicture()">camera</button>
+  </div>
 
-
-  <ion-item>
-    <ion-input type="text" placeholder="Descrizione"></ion-input>
-  </ion-item>
-
-  <button ion-button full (click)="getLocation()">location  </button>
-
-  <button ion-button full (click)="recordAudio()">record audio  </button>
-
-  <button ion-button full (click)="submitReport()">submit  </button>
-
-  <button ion-button full (click)="play()">play  </button>
-
--->
 </ion-content>

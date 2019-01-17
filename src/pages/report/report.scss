@@ -1,12 +1,21 @@
 page-report{
 
   .style1{
+    position: absolute;
+    width: 70%;
+    height: 0%;
     text-align: center;
   }
 
-  .style2{
-    color: #006b3e;
-    text-align: center;
+  .styleButton{
+    display: block;
   }
 
+  .img{
+    border: 1px solid darkslategray;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
 }
