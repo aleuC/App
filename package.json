@@ -82,7 +82,12 @@
       "cordova-plugin-file": {},
       "cordova-plugin-nativeaudio": {},
       "cordova-plugin-x-toast": {},
-      "cordova-plugin-android-permissions": {}
+      "cordova-plugin-android-permissions": {},
+      "cordova-plugin-ionic": {
+        "APP_ID": "83b7c5b0",
+        "CHANNEL_NAME": "Master",
+        "UPDATE_METHOD": "auto"
+      }
     },
     "platforms": [
       "ios",
