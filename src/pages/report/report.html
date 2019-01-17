@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title [className]="'style2'">Report</ion-title>
+    <ion-title [className]="'style2'">Segnalazione</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -13,20 +13,48 @@
     </div>
     <div class="row">
       <div class="col">
-        <button ion-button full (click)="onTakePicture()">camera</button>
+        <button ion-button (click)="onTakePicture()">Aggiungi Foto</button>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <ion-item>
-          <ion-input type="text" placeholder="Descrie"></ion-input>
+          <ion-input type="text" placeholder="Descrizione"></ion-input>
+        </ion-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ion-item>
+          <button ion-button (click)="getLocation()">Salva GPS</button>
+        </ion-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ion-item>
+          <button ion-button (click)="recordAudio()">Registra Nota Audio</button>
+        </ion-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ion-item>
+          <button ion-button (click)="play()">Ascolta Nota Audio</button>
+        </ion-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ion-item>
+          <button ion-button (click)="submitReport()">Salva Segnalazione</button>
         </ion-item>
       </div>
     </div>
   </ion-grid>
 </ion-content>
 <ion-content>
-
+<!--
   <img class="img" [src]="image" />
 
   <button ion-button full (click)="onTakePicture()">camera</button>
@@ -44,5 +72,5 @@
 
   <button ion-button full (click)="play()">play  </button>
 
-
+-->
 </ion-content>
