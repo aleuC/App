@@ -1,11 +1,30 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      report
-    </ion-title>
+    <ion-title [className]="'style2'">Report</ion-title>
   </ion-navbar>
 </ion-header>
 
+<ion-content [className]="'style1'">
+  <ion-grid>
+    <div class="row">
+      <div class="col">
+        <img class="img" [src]="image" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button ion-button full (click)="onTakePicture()">camera</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ion-item>
+          <ion-input type="text" placeholder="Descrizione"></ion-input>
+        </ion-item>
+      </div>
+    </div>
+  </ion-grid>
+</ion-content>
 <ion-content>
 
   <img class="img" [src]="image" />
