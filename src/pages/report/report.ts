@@ -39,6 +39,7 @@ export class ReportPage {
 
   }
 
+
   play(){
 
     this.nativeAudio.preloadSimple('uniqueId1', 'storage/emulated/0/Voice%20Recorder/Voce%20037.m4a' );
@@ -178,6 +179,7 @@ export class ReportPage {
 
       this.image = realPath;
       console.log(realPath);
+      document.getElementById('picture').setAttribute('src', this.image);
 
     }, (err) => {
       this.displayErrorAlert(err);
