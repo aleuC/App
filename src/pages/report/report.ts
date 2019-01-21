@@ -8,6 +8,8 @@ import {MediaCapture, MediaFile, CaptureError, CaptureImageOptions} from "@ionic
 import { File } from '@ionic-native/file';
 import { NativeAudio} from "@ionic-native/native-audio";
 import { Toast } from "@ionic-native/toast";
+import {Media, MediaObject} from "@ionic-native/media";
+import log from "@ionic/pro/dist/src/services/monitoring/log";
 
 @Component({
   selector: 'page-report',
@@ -21,7 +23,7 @@ export class ReportPage {
   private text: string;
   private audioLocation:string;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, private camera: Camera, private androidPermissions: AndroidPermissions, private geolocation: Geolocation, private storage: Storage, private mediaCapture: MediaCapture, private file: File,private nativeAudio:NativeAudio,private toast:Toast) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, private camera: Camera, private androidPermissions: AndroidPermissions, private geolocation: Geolocation, private storage: Storage, private mediaCapture: MediaCapture, private file: File,private nativeAudio:NativeAudio,private toast:Toast,private media:Media) {
 
     this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
       result => console.log('Has permission?', result.hasPermission),
@@ -55,6 +57,18 @@ export class ReportPage {
 
     this.mediaCapture.captureAudio().then(
       (data: MediaFile[]) => {
+
+        let capturedFile = data[0];
+        let fileName = capturedFile.name;
+        let dir = capturedFile['localURL'].split('/');
+        dir.pop();
+        let fromDirectory = dir.join('/');
+        var toDirectory = this.file.dataDirectory;
+
+        const audioFile: MediaObject = this.media.create(fromDirectory.localURI+fileName);
+        console.log(audioFile.getDuration());
+        audioFile.play();
+
         (this.audioLocation = data[0].fullPath)
         console.log(this.audioLocation);
 
@@ -77,6 +91,46 @@ export class ReportPage {
     this.storage.get('my-json').then((val) => {
       console.log('Your json is', val.name);
     });
+
+    /*const file: MediaObject = this.media.create('file.mp3');
+
+    file.onStatusUpdate.subscribe(status => console.log(status)); // fires when file status changes
+
+    file.onSuccess.subscribe(() => console.log('Action is successful'));
+
+    file.onError.subscribe(error => console.log('Error!', error));
+
+    file.startRecord();
+
+    file.play();
+
+    file.release();
+
+    console.log("finito :)")*/
+
+
+    /*window.requestFileSystem  (loc, function(d) {
+      window.resolveLocalFileSystemURL($scope.sound.file, function(fe) {
+        fe.copyTo(d, filename, function(e) {
+          console.log('success inc opy');
+          console.dir(e);
+          scope.sound.file = e.nativeURL;
+          $scope.sound.path = e.fullPath;
+
+          Sounds.save($scope.sound).then(function() {
+            $ionicHistory.nextViewOptions({
+              disableBack: true
+            });
+            $state.go("home");
+          });
+
+        }, function(e) {
+          console.log('error in coipy');console.dir(e);
+        });
+      }, function(e) {
+        console.log("error in inner bullcrap");
+        console.dir(e);
+      });*/
 
 
   }
