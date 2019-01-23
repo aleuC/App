@@ -44,8 +44,8 @@ export class ReportPage {
 
   play(){
 
-    this.nativeAudio.preloadSimple('uniqueId1', 'storage/emulated/0/Voice%20Recorder/Voce%20037.m4a' );
-    this.nativeAudio.play('uniqueId1', () => this.toast.show("ciao","long","center")).then();
+    /*this.nativeAudio.preloadSimple('uniqueId1', 'storage/emulated/0/Voice%20Recorder/Voce%20037.m4a' );
+    this.nativeAudio.play('uniqueId1', () => this.toast.show("ciao","long","center")).then();*/
 
 
 
@@ -64,16 +64,26 @@ export class ReportPage {
         dir.pop();
         let fromDirectory = dir.join('/');
         var toDirectory = this.file.dataDirectory;
+        this.toast.show("aaaaaaaaaaaaaaaaa","long","center");
 
-        const audioFile: MediaObject = this.media.create(fromDirectory.localURI+fileName);
+        let dwoakda = this.alertCtrl.create({
+          title: 'directory',
+          subTitle: 'path',
+          message: data[0].fullPath,
+          buttons: ['OK']
+        });
+        dwoakda.present();
+
+        const audioFile: MediaObject = this.media.create("");
+
         console.log(audioFile.getDuration());
-        audioFile.play();
+       // audioFile.play();
 
-        (this.audioLocation = data[0].fullPath)
-        console.log(this.audioLocation);
+        //this.audioLocation = data[0].fullPath;
+        console.log(data[0].fullPath);
 
-        this.nativeAudio.preloadSimple('uniqueId1', this.audioLocation.replace(/^file:/, ''));
-        this.nativeAudio.play('uniqueId1');
+        /*this.nativeAudio.preloadSimple('uniqueId1', this.audioLocation.replace(/^file:/, ''));
+        this.nativeAudio.play('uniqueId1');*/
 
 
 
@@ -85,12 +95,12 @@ export class ReportPage {
     //console.log("bubu"+your_json_object.name);
 
     // set a key/value
-    this.storage.set('my-json', your_json_object);
+    /*this.storage.set('my-json', your_json_object);
 
     // to get a key/value pair
     this.storage.get('my-json').then((val) => {
       console.log('Your json is', val.name);
-    });
+    });*/
 
     /*const file: MediaObject = this.media.create('file.mp3');
 
@@ -137,24 +147,32 @@ export class ReportPage {
 
   submitReport() {
 
+    let cords=this.getLocation();
+
     let date = new Date().getDate();
 
-    let your_json_object = {"name": "John"};
+    let your_json_object = {"coordinates": cords};
 
     // set a key/value
-    this.storage.set('my-json', your_json_object);
+    this.storage.set(date.toString(), your_json_object);
+
+    console.log(cords);
 
     // to get a key/value pair
-    this.storage.get('my-json').then((val) => {
-      console.log('Your json is', val.name);
+    this.storage.get(date.toString()).then((val) => {
+      console.log('Your json is', val.coordinates);
     });
 
   }
 
   getLocation() {
+    let cord="";
+    this.toast.show("oy vey","long","center");
     this.geolocation.getCurrentPosition().then((resp) => {
 
       resp.coords.latitude;
+
+      cord=resp.coords.latitude.toString()+","+resp.coords.longitude.toString();
 
       let alert = this.alertCtrl.create({
         title: 'location',
@@ -166,6 +184,9 @@ export class ReportPage {
 
       // resp.coords.latitude
       // resp.coords.longitude
+
+      return cord;
+
     }).catch((error) => {
       console.log('Error getting location', error);
     });
