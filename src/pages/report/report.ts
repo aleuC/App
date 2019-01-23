@@ -18,9 +18,11 @@ import log from "@ionic/pro/dist/src/services/monitoring/log";
 })
 export class ReportPage {
 
+  description:string;
+
   private image: string;
   private audio: string;
-  private text: string;
+  private location:string;
   private audioLocation:string;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, private camera: Camera, private androidPermissions: AndroidPermissions, private geolocation: Geolocation, private storage: Storage, private mediaCapture: MediaCapture, private file: File,private nativeAudio:NativeAudio,private toast:Toast,private media:Media) {
@@ -38,6 +40,8 @@ export class ReportPage {
     );
 
     this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.RECORD_AUDIO, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
+
+    this.getLocation();
 
   }
 
@@ -147,11 +151,28 @@ export class ReportPage {
 
   submitReport() {
 
-    let cords=this.getLocation();
+    let cords=this.location;
 
-    let date = new Date().getDate();
+    let date = new Date().getTime();
+    console.log(date);
 
-    let your_json_object = {"coordinates": cords};
+    this.storage.forEach( (value, key, index) => {
+      console.log("This is the value", value)
+      console.log("from the key", key)
+      console.log("Index is", index)
+
+      let wop = this.alertCtrl.create({
+        title: 'directory',
+        subTitle: 'path',
+        message: value+"  "+key+"   "+index,
+        buttons: ['OK']
+      });
+      wop.present();
+
+    })
+
+
+    let your_json_object = {"coordinates": cords,"image": this.image,"description":this.description};
 
     // set a key/value
     this.storage.set(date.toString(), your_json_object);
@@ -160,7 +181,16 @@ export class ReportPage {
 
     // to get a key/value pair
     this.storage.get(date.toString()).then((val) => {
-      console.log('Your json is', val.coordinates);
+      console.log('Your json is', val.coordinates,val.image);
+
+      let dwoakda = this.alertCtrl.create({
+        title: 'directory',
+        subTitle: 'path',
+        message:  val.coordinates+"  "+val.image+"   "+val.description,
+        buttons: ['OK']
+      });
+      dwoakda.present();
+
     });
 
   }
@@ -170,22 +200,13 @@ export class ReportPage {
     this.toast.show("oy vey","long","center");
     this.geolocation.getCurrentPosition().then((resp) => {
 
-      resp.coords.latitude;
+      console.log(resp.coords.latitude.toString()+","+resp.coords.longitude.toString());
 
-      cord=resp.coords.latitude.toString()+","+resp.coords.longitude.toString();
-
-      let alert = this.alertCtrl.create({
-        title: 'location',
-        subTitle: 'coordinates',
-        message: resp.coords.latitude.toString(),
-        buttons: ['OK']
-      });
-      alert.present();
-
+      this.location=resp.coords.latitude.toString()+","+resp.coords.longitude.toString();
       // resp.coords.latitude
       // resp.coords.longitude
 
-      return cord;
+      //return cord;
 
     }).catch((error) => {
       console.log('Error getting location', error);
