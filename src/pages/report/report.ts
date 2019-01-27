@@ -162,8 +162,8 @@ export class ReportPage {
       console.log("Index is", index)
 
       let wop = this.alertCtrl.create({
-        title: 'directory',
-        subTitle: 'path',
+        title: 'Segnalazione salvata',
+        subTitle: 'Dettagli',
         message: value+"  "+key+"   "+index,
         buttons: ['OK']
       });
@@ -184,8 +184,8 @@ export class ReportPage {
       console.log('Your json is', val.coordinates,val.image);
 
       let dwoakda = this.alertCtrl.create({
-        title: 'directory',
-        subTitle: 'path',
+        title: 'Segnalazione salvata',
+        subTitle: 'Dettagli',
         message:  val.coordinates+"  "+val.image+"   "+val.description,
         buttons: ['OK']
       });
