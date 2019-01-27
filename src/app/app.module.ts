@@ -8,13 +8,14 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { FirstPage } from '../pages/app/firstpage';
+import {ReportPage} from "../pages/report/report";
+import {ReportlistPage} from "../pages/reportlist/reportlist";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Pro } from '@ionic/pro';
 import { Injectable, Injector } from '@angular/core';
-import {ReportPage} from "../pages/report/report";
 
 import { Camera } from '@ionic-native/camera';
 import {AndroidPermissions} from "@ionic-native/android-permissions";
@@ -61,7 +62,8 @@ export class MyErrorHandler implements ErrorHandler {
     HomePage,
     TabsPage,
     FirstPage,
-    ReportPage
+    ReportPage,
+    ReportlistPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,8 @@ export class MyErrorHandler implements ErrorHandler {
     HomePage,
     TabsPage,
     FirstPage,
-    ReportPage
+    ReportPage,
+    ReportlistPage
   ],
   providers: [
     StatusBar,
