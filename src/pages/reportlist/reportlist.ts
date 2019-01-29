@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {AlertController, NavController, NavParams} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -8,7 +8,22 @@ import { Storage } from '@ionic/storage';
 })
 export class ReportlistPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+   ar = new Array();
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, public alertCtrl: AlertController) {
+
+    this.createList();
+  }
+
+  createList(){
+    this.storage.forEach( (value, key, index) => {
+      console.log("This is the value", value)
+      console.log("from the key", key)
+      console.log("Index is", index)
+
+      value.timestamp=new Date(value.timestamp).toLocaleDateString();
+      this.ar.push(value);
+    })
   }
 
 }

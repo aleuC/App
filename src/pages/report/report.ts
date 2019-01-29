@@ -172,15 +172,17 @@ export class ReportPage {
     })
 
 
-    let your_json_object = {"coordinates": cords,"image": this.image,"description":this.description};
+    let reportTimeStamp= date.toString();
+
+    let your_json_object = {"coordinates": cords,"image": this.image,"description":this.description,"timestamp":reportTimeStamp};
 
     // set a key/value
-    this.storage.set(date.toString(), your_json_object);
+    this.storage.set(reportTimeStamp, your_json_object);
 
     console.log(cords);
 
     // to get a key/value pair
-    this.storage.get(date.toString()).then((val) => {
+    this.storage.get(reportTimeStamp).then((val) => {
       console.log('Your json is', val.coordinates,val.image);
 
       let dwoakda = this.alertCtrl.create({

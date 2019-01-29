@@ -7,4 +7,19 @@
 
 <ion-content>
 
+  <li *ngFor="let a of ar">
+    <ion-card>
+      <img src={{a.image}}/>
+      <ion-card-content>
+       <ion-card-title>
+         {{a.timestamp}}
+       </ion-card-title>
+        <p>
+          {{a.description}}
+        </p>
+     </ion-card-content>
+  </ion-card>
+
+  </li>
+
 </ion-content>
