@@ -4,6 +4,8 @@ import { Storage } from '@ionic/storage';
 import {ReportShowPage} from "../reportshow/reportshow";
 
 @Component({
+
+  template: `<ion-card ion-card [navPush]="pushPage" [navParams]="params">Go</ion-card>`,
   selector: 'page-reportlist',
   templateUrl: 'reportlist.html',
 })

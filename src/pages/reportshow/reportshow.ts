@@ -10,4 +10,9 @@ import { Storage } from '@ionic/storage';
 export class ReportShowPage{
 
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
+    console.log("aaaaaaaaaaaaaaaaaay: "+navParams.get("param"))
+
+  }
+
 }
