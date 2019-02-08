@@ -8,7 +8,7 @@
 <ion-content>
 
   <li *ngFor="let a of ar">
-    <ion-card>
+    <ion-card tappable (click)="viewReport(a.timestamp)">
       <img src={{a.image}}/>
       <ion-card-content>
        <ion-card-title>

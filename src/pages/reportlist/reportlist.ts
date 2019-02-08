@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController, NavController, NavParams} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import {ReportShowPage} from "../reportshow/reportshow";
 
 @Component({
   selector: 'page-reportlist',
@@ -21,9 +22,14 @@ export class ReportlistPage {
       console.log("from the key", key)
       console.log("Index is", index)
 
-      value.timestamp=new Date(value.timestamp).toLocaleDateString();
       this.ar.push(value);
     })
   }
+
+  viewReport(param) {
+    console.log('param:',param)
+    this.navCtrl.push(ReportShowPage,{param:param});
+  }
+
 
 }

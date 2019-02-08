@@ -153,10 +153,10 @@ export class ReportPage {
 
     let cords=this.location;
 
-    let date = new Date().getTime();
+    let date = new Date();
     console.log(date);
 
-    this.storage.forEach( (value, key, index) => {
+   /* this.storage.forEach( (value, key, index) => {
       console.log("This is the value", value)
       console.log("from the key", key)
       console.log("Index is", index)
@@ -169,21 +169,21 @@ export class ReportPage {
       });
       wop.present();
 
-    })
+    })*/
 
 
-    let reportTimeStamp= date.toString();
+    let reportTimeStamp= date.toLocaleString();
 
     let your_json_object = {"coordinates": cords,"image": this.image,"description":this.description,"timestamp":reportTimeStamp};
 
     // set a key/value
-    this.storage.set(reportTimeStamp, your_json_object);
+    this.storage.set(date.getTime().toString(), your_json_object);
 
     console.log(cords);
 
     // to get a key/value pair
-    this.storage.get(reportTimeStamp).then((val) => {
-      console.log('Your json is', val.coordinates,val.image);
+    this.storage.get(date.getTime().toString()).then((val) => {
+      console.log('Your json is', val.coordinates,val.image,val.timestamp);
 
       let dwoakda = this.alertCtrl.create({
         title: 'Segnalazione salvata',

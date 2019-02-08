@@ -10,6 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { FirstPage } from '../pages/app/firstpage';
 import {ReportPage} from "../pages/report/report";
 import {ReportlistPage} from "../pages/reportlist/reportlist";
+import {ReportShowPage} from "../pages/reportshow/reportshow"
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -63,7 +64,8 @@ export class MyErrorHandler implements ErrorHandler {
     TabsPage,
     FirstPage,
     ReportPage,
-    ReportlistPage
+    ReportlistPage,
+    ReportShowPage
   ],
   imports: [
     BrowserModule,
@@ -79,7 +81,8 @@ export class MyErrorHandler implements ErrorHandler {
     TabsPage,
     FirstPage,
     ReportPage,
-    ReportlistPage
+    ReportlistPage,
+    ReportShowPage
   ],
   providers: [
     StatusBar,
