@@ -11,6 +11,8 @@ export class ReportShowPage{
 
   private param;
   private image:string;
+  private description:string;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
     console.log("aaaaaaaaaaaaaaaaaay: "+navParams.get("param"));
@@ -18,8 +20,12 @@ export class ReportShowPage{
 
 
     this.storage.get(this.param).then((val)=> {
-      console.log('Your json is', val.coordinates,val.image,val.timestamp);
-      this.image=val.image;
+
+      this.image=val.image
+      this.description=val.description;
+
+
+
       document.getElementById('picture').setAttribute('src', this.image);
 
 
