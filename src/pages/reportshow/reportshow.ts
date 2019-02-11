@@ -9,9 +9,22 @@ import { Storage } from '@ionic/storage';
 
 export class ReportShowPage{
 
+  private param;
+  private image:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
-    console.log("aaaaaaaaaaaaaaaaaay: "+Date.parse(navParams.get("param")))
+    console.log("aaaaaaaaaaaaaaaaaay: "+navParams.get("param"));
+    this.param=navParams.get("param");
+
+
+    this.storage.get(this.param.then((val)=> {
+      console.log('Your json is', val.coordinates,val.image,val.timestamp);
+      this.image=val.image;
+      document.getElementById('picture').setAttribute('src', this.image);
+
+
+
+    }));
 
   }
 
