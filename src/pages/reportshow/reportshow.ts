@@ -17,14 +17,14 @@ export class ReportShowPage{
     this.param=navParams.get("param");
 
 
-    this.storage.get(this.param.then((val)=> {
+    this.storage.get(this.param).then((val)=> {
       console.log('Your json is', val.coordinates,val.image,val.timestamp);
       this.image=val.image;
       document.getElementById('picture').setAttribute('src', this.image);
 
 
 
-    }));
+    });
 
   }
 
