@@ -172,9 +172,10 @@ export class ReportPage {
     })*/
 
 
-    let reportTimeStamp= date.toLocaleString();
+    let reportTimeStamp= date.getTime();
+    let localeDate = date.toLocaleDateString();
 
-    let your_json_object = {"coordinates": cords,"image": this.image,"description":this.description,"timestamp":reportTimeStamp};
+    let your_json_object = {"coordinates": cords,"image": this.image,"description":this.description,"timestamp":reportTimeStamp,"localeDate":localeDate};
 
     // set a key/value
     this.storage.set(date.getTime().toString(), your_json_object);
