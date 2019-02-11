@@ -11,7 +11,7 @@ export class ReportShowPage{
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
-    console.log("aaaaaaaaaaaaaaaaaay: "+navParams.get("param"))
+    console.log("aaaaaaaaaaaaaaaaaay: "+Date.parse(navParams.get("param")))
 
   }
 
