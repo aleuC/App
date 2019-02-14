@@ -21,7 +21,7 @@ export class ReportShowPage{
 
     this.storage.get(this.param).then((val)=> {
 
-      this.image=val.image
+      this.image=val.image;
       this.description=val.description;
 
 

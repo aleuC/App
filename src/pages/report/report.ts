@@ -9,6 +9,7 @@ import { File } from '@ionic-native/file';
 import { NativeAudio} from "@ionic-native/native-audio";
 import { Toast } from "@ionic-native/toast";
 import {Media, MediaObject} from "@ionic-native/media";
+import {FirstPage} from '../app/firstpage';
 import log from "@ionic/pro/dist/src/services/monitoring/log";
 
 @Component({
