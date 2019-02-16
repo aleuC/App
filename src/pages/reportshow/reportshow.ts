@@ -11,7 +11,7 @@ export class ReportShowPage{
 
   private param;
   private image:string;
-  private description:string;
+  description=new String();
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
@@ -23,6 +23,7 @@ export class ReportShowPage{
 
       this.image=val.image;
       this.description=val.description;
+      console.log("oi:"+this.description)
 
 
 
