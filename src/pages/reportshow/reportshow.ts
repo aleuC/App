@@ -30,7 +30,7 @@ export class ReportShowPage{
 
       document.getElementById('picture').setAttribute('src', this.image);
 
-      const browser = this.iab.create('https://www.techiediaries.com','_self',{location:'no'});
+      const browser = this.iab.create('http://www.google.com/maps/place/49.46800006494457,17.11514008755796','_blank',{location:'no'});
 
       console.log("boi:"+this.description)
 
