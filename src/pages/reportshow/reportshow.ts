@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController, NavController, NavParams} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'page-reportshow',
@@ -14,7 +15,7 @@ export class ReportShowPage{
   description=new String();
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage,private iab:InAppBrowser) {
     console.log("aaaaaaaaaaaaaaaaaay: "+navParams.get("param"));
     this.param=navParams.get("param");
 
@@ -29,7 +30,9 @@ export class ReportShowPage{
 
       document.getElementById('picture').setAttribute('src', this.image);
 
+      const browser = this.iab.create('https://www.techiediaries.com','_self',{location:'no'});
 
+      console.log("boi:"+this.description)
 
     });
 

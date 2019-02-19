@@ -27,6 +27,7 @@ import { File } from '@ionic-native/file';
 import { NativeAudio} from "@ionic-native/native-audio";
 import { Toast } from "@ionic-native/toast";
 import { Media} from "@ionic-native/media";
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 Pro.init('YOUR_APP_ID', {
   appVersion: 'APP_VERSION'
@@ -96,6 +97,7 @@ export class MyErrorHandler implements ErrorHandler {
     NativeAudio,
     Toast,
     Media,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: MyErrorHandler}
   ]
 })
