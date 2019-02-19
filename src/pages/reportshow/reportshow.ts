@@ -39,10 +39,11 @@ export class ReportShowPage{
   }
 
   showPosition(){
-
     const browser = this.iab.create('http://www.google.com/maps/place/'+this.location,'_blank',{location:'no'});
+  }
 
-
+  deleteReport(){
+    this.storage.remove(this.param);
   }
 
 }
