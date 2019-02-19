@@ -44,6 +44,7 @@ export class ReportShowPage{
 
   deleteReport(){
     this.storage.remove(this.param);
+    this.navCtrl.pop();
   }
 
 }
