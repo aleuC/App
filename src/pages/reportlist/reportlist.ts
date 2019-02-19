@@ -18,10 +18,6 @@ export class ReportlistPage {
     this.createList();
   }
 
-  ionViewWillEnter(){
-    this.createList();
-  }
-
   createList(){
     this.storage.forEach( (value, key, index) => {
       console.log("This is the value", value)
