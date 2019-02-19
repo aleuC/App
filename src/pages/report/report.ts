@@ -57,7 +57,7 @@ export class ReportPage {
 
   returnToHome(){
     this.wait(1000);
-    this.navCtrl.push(FirstPage);
+    this.navCtrl.pop();
   }
 
   play(){
