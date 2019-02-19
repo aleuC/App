@@ -11,6 +11,7 @@ import { Toast } from "@ionic-native/toast";
 import {Media, MediaObject} from "@ionic-native/media";
 import {FirstPage} from '../app/firstpage';
 import log from "@ionic/pro/dist/src/services/monitoring/log";
+import {ReportlistPage} from "../reportlist/reportlist";
 
 @Component({
   selector: 'page-report',
@@ -46,6 +47,18 @@ export class ReportPage {
 
   }
 
+  wait(ms){
+    let start = new Date().getTime();
+    let end = start;
+    while(end<start+ms){
+      end = new Date().getTime();
+    }
+  }
+
+  returnToHome(){
+    this.wait(1000);
+    this.navCtrl.push(FirstPage);
+  }
 
   play(){
 
@@ -195,7 +208,10 @@ export class ReportPage {
       });
       dwoakda.present();
 
+
     });
+
+    this.returnToHome();
 
   }
 
