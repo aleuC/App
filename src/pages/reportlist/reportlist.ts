@@ -19,6 +19,7 @@ export class ReportlistPage {
   }
 
   createList(){
+    //popolo l'array con tutti i record dello store
     this.storage.forEach( (value, key, index) => {
       console.log("This is the value", value)
       console.log("from the key", key)

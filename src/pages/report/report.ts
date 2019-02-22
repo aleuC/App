@@ -43,6 +43,7 @@ export class ReportPage {
 
     this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.RECORD_AUDIO, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
 
+    //chiamo la funzione nel costruttore per dare il tempo al gps di ottenere un fix
     this.getLocation();
 
   }
@@ -65,10 +66,9 @@ export class ReportPage {
     /*this.nativeAudio.preloadSimple('uniqueId1', 'storage/emulated/0/Voice%20Recorder/Voce%20037.m4a' );
     this.nativeAudio.play('uniqueId1', () => this.toast.show("ciao","long","center")).then();*/
 
-
-
   }
 
+  //non funzionante
   recordAudio() {
 
     var your_json_object = {};
@@ -170,22 +170,6 @@ export class ReportPage {
     let date = new Date();
     console.log(date);
 
-   /* this.storage.forEach( (value, key, index) => {
-      console.log("This is the value", value)
-      console.log("from the key", key)
-      console.log("Index is", index)
-
-      let wop = this.alertCtrl.create({
-        title: 'Segnalazione salvata',
-        subTitle: 'Dettagli',
-        message: value+"  "+key+"   "+index,
-        buttons: ['OK']
-      });
-      wop.present();
-
-    })*/
-
-
     let reportTimeStamp= date.getTime();
     let localeDate = date.toLocaleDateString();
 
@@ -196,37 +180,14 @@ export class ReportPage {
 
     console.log(cords);
 
-    // to get a key/value pair
-    this.storage.get(date.getTime().toString()).then((val) => {
-      console.log('Your json is', val.coordinates,val.image,val.timestamp);
-
-      let dwoakda = this.alertCtrl.create({
-        title: 'Segnalazione salvata',
-        subTitle: 'Dettagli',
-        message:  val.coordinates+"  "+val.image+"   "+val.description,
-        buttons: ['OK']
-      });
-      dwoakda.present();
-
-
-    });
-
     this.returnToHome();
 
   }
 
   getLocation() {
-    let cord="";
-    this.toast.show("oy vey","long","center");
     this.geolocation.getCurrentPosition().then((resp) => {
 
-      console.log(resp.coords.latitude.toString()+","+resp.coords.longitude.toString());
-
       this.location=resp.coords.latitude.toString()+","+resp.coords.longitude.toString();
-      // resp.coords.latitude
-      // resp.coords.longitude
-
-      //return cord;
 
     }).catch((error) => {
       console.log('Error getting location', error);
@@ -234,48 +195,6 @@ export class ReportPage {
   }
 
   onTakePicture() {
-
-    /*const options: CaptureImageOptions = {
-      limit: 1
-    }*/
-
-    var imageLocation;
-
-    /*this.mediaCapture.captureImage(options).then((res: MediaFile[]) => {
-        let capturedFile = res[0];
-        let fileName = capturedFile.name;
-        let dir = capturedFile['localURL'].split('/');
-        dir.pop();
-        let fromDirectory = dir.join('/');
-        var toDirectory = this.file.dataDirectory;
-
-        imageLocation = toDirectory + fileName;
-        console.log('image_location: ', capturedFile.fullPath);
-
-        //this.file.readAsDataURL(toDirectory, fileName).then(res=> console.log('immagine gbbg: ', res)  );
-
-
-
-        let realPath = imageLocation.replace(/^file:\/\//, '');
-        //realPath = imageLocation.replace(/\/, '\');
-
-        console.log('image_location_dir: ', realPath);
-
-        this.image =realPath;
-
-        this.file.copyFile(fromDirectory, fileName, toDirectory, fileName).then((res) => {
-          //this.storeMediaFiles([{name: fileName, size: capturedFile.size}]);
-          //console.log('image_location: ', toDirectory + fileName);
-
-        }, err => {
-          console.log('err: ', err.toString());
-        });
-      },
-      (err: CaptureError) => console.error(err));*/
-
-
-    //console.log('image', imageLocation);
-
 
     const options: CameraOptions = {
       quality: 100,

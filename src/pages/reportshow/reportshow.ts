@@ -17,7 +17,6 @@ export class ReportShowPage{
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage,private iab:InAppBrowser) {
-    console.log("aaaaaaaaaaaaaaaaaay: "+navParams.get("param"));
     this.param=navParams.get("param");
 
 
@@ -25,14 +24,9 @@ export class ReportShowPage{
 
       this.image=val.image;
       this.description=val.description;
-      this.location=val.coordinates;
-      console.log("oi:"+this.description)
-
-
+      this.location = val.coordinates;
 
       document.getElementById('picture').setAttribute('src', this.image);
-
-      console.log("boi:"+this.description)
 
     });
 
